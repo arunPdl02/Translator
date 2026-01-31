@@ -1,86 +1,107 @@
-## **Translator Application**
-### **Description**
-This project is a **Translator Application** that utilizes a **Binary Search Tree (BST)** to store and manage a dictionary of word translations. The application allows users to:
-- **Add** word translations to the dictionary.  
-- **Search** for a translation by entering an English word.  
-- **Display** all stored translations in sorted order.  
+```md
+# Translator Application (C++)
 
-It includes **exception handling** to ensure robustness when handling duplicate words, missing entries, and memory allocation failures.
+## Overview
+This project is a **C++ command-line Translator Application** that stores and retrieves word translations using a **Binary Search Tree (BST)**. The focus is on **data structures, exception-safe design, and modular C++ project organization**.
 
----
-
-### **Features**
-- **Binary Search Tree (BST) Implementation:** Stores word pairs efficiently for fast retrieval.  
-- **Exception Handling:** Prevents duplicate entries, handles missing translations, and ensures memory safety.  
-- **Makefile Support:** Automates compilation of multiple C++ source files.  
-- **Command-Line Interaction:** Reads input from a file and allows user queries via terminal.  
+The application supports:
+- Loading word translations from a file
+- Searching for translations by key
+- Displaying all stored translations in sorted order
 
 ---
 
-### **How It Works**
-1. The program reads a text file containing word translations in the format:  
-   ```
-   word:translation
-   ```
-   Example (`myDataFile.txt`):  
-   ```
-   pizza:pizza
-   house:casa
-   dog:perro
-   apple:manzana
-   ```
-
-2. The words are **stored in a BST**, preventing duplicates and allowing efficient retrieval.  
-
-3. Users can **input a word**, and the program will:
-   - Return the translated word if it exists.
-   - Display "***Not Found!***" if the word is missing.  
-   - Display the entire dictionary when prompted.
+## Key Concepts Demonstrated
+- Binary Search Tree (BST) implementation  
+- Modular C++ design (separate headers and source files)  
+- Custom exception handling  
+- Makefile-based build system  
+- Manual memory management and defensive programming  
 
 ---
 
-### **Project Structure**
-📂 **Project Files:**
-- `Translator.cpp` → Main driver for the application.  
-- `WordPair.h / WordPair.cpp` → Defines word-pair objects with overloaded operators for BST comparisons.  
-- `BST.h / BST.cpp` → Implements a Binary Search Tree for dictionary storage.  
-- `Dictionary.h / Dictionary.cpp` → Wrapper class for managing the BST-based dictionary.  
-- `makefile` → Automates compilation.  
-- `myDataFile.txt` → Sample dataset of word translations.  
+## Project Structure
+```
 
-📂 **Exception Handling Files:**
-- `ElementAlreadyExistsException.h / .cpp` → Handles duplicate entries.  
-- `ElementDoesNotExistException.h / .cpp` → Handles missing entries.  
-- `EmptyDataCollectionException.h / .cpp` → Handles cases where the dictionary is empty.  
-- `UnableToInsertException.h / .cpp` → Handles memory allocation failures.  
+.
+├── Translator.cpp
+├── Makefile
+├── build/                  # Auto-generated object files
+├── include/
+│   ├── BST.h
+│   ├── BSTNode.h
+│   ├── Dictionary.h
+│   ├── WordPair.h
+│   └── exceptions/
+│       ├── ElementAlreadyExistsException.h
+│       ├── ElementDoesNotExistException.h
+│       ├── EmptyDataCollectionException.h
+│       ├── UnableToInsertException.h
+├── src/
+│   ├── BST.cpp
+│   ├── BSTNode.cpp
+│   ├── Dictionary.cpp
+│   ├── WordPair.cpp
+│   └── exceptions/
+│       ├── ElementAlreadyExistsException.cpp
+│       ├── ElementDoesNotExistException.cpp
+│       ├── EmptyDataCollectionException.cpp
+│       ├── UnableToInsertException.cpp
+└── data/
+└── myDataFile.txt
+
+```
 
 ---
 
-### **Compilation & Execution**
-#### **To Compile:**
-Run the following command to build the project using the **Makefile**:
+## How It Works
+1. The program reads a data file containing word pairs in the format:
+```
+
+word:translation
+
+````
+2. Each word pair is inserted into a BST, preventing duplicates.
+3. Users can:
+- Enter a word to retrieve its translation
+- Type `display` to print all translations in sorted order
+
+---
+
+## Build Instructions
+Compile the project using the Makefile:
+
 ```bash
 make
-```
+````
 
-#### **To Run:**
-Provide a **data file** as input:
+Clean build artifacts:
+
 ```bash
-./Translator myDataFile.txt
+make clean
 ```
-Then, **enter a word** to translate or type `"display"` to view all stored translations.
 
 ---
 
-### **Example Usage**
-**Input:**
+## Running the Application
+
+Run the program with a data file:
+
 ```bash
+./translate data/myDataFile.txt
+```
+
+Example input:
+
+```text
 house
 tree
 display
 ```
-**Output:**
-```
+
+Example output:
+
+```text
 house:casa
 ***Not Found!***
 apple:manzana
@@ -91,9 +112,24 @@ pizza:pizza
 
 ---
 
-### **Future Improvements**
-- Add support for **multiple languages**.  
-- Implement **graphical user interface (GUI)** for better user experience.  
-- Optimize BST operations for better performance with large datasets.  
+## Error Handling
+
+The application uses custom exceptions to handle:
+
+* Duplicate entries
+* Missing translations
+* Empty dictionary operations
+* Memory allocation failures
+
+This ensures predictable and robust behavior.
 
 ---
+
+## Notes
+
+This project is intentionally backend-focused and emphasizes **correctness, structure, and maintainability** over UI or external libraries.
+
+```
+
+If you want a **shorter README for GitHub recruiters** (half the length), say the word and I’ll trim it ruthlessly.
+```
