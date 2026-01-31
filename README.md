@@ -21,8 +21,6 @@ The application supports:
 ---
 
 ## Project Structure
-```
-
 .
 ├── Translator.cpp
 ├── Makefile
@@ -129,7 +127,3 @@ This ensures predictable and robust behavior.
 
 This project is intentionally backend-focused and emphasizes **correctness, structure, and maintainability** over UI or external libraries.
 
-```
-
-If you want a **shorter README for GitHub recruiters** (half the length), say the word and I’ll trim it ruthlessly.
-```
