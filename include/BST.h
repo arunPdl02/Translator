@@ -17,10 +17,10 @@
 #define BST_H
 
 #include "BSTNode.h"
-#include "ElementAlreadyExistsException.h"
-#include "ElementDoesNotExistException.h"
-#include "EmptyDataCollectionException.h"
-#include "UnableToInsertException.h"
+#include "exceptions/ElementAlreadyExistsException.h"
+#include "exceptions/ElementDoesNotExistException.h"
+#include "exceptions/EmptyDataCollectionException.h"
+#include "exceptions/UnableToInsertException.h"
 #include "WordPair.h"
 
 

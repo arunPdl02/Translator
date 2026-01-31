@@ -9,7 +9,7 @@
  *         Copyright (c) 2013 __Pearson Education__. All rights reserved.
  */
  
-#include "ElementDoesNotExistException.h"  
+#include "exceptions/ElementDoesNotExistException.h"  
 
 // Constructor
 ElementDoesNotExistException::ElementDoesNotExistException(const string& message): 

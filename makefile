@@ -1,34 +1,38 @@
-all: translate
+CXX      := g++
+CXXFLAGS := -Wall -Iinclude
+TARGET   := translate
+BUILDDIR := build
+SRCDIR   := src
 
-translate: Translator.o WordPair.o Dictionary.o BST.o BSTNode.o ElementAlreadyExistsException.o ElementDoesNotExistException.o EmptyDataCollectionException.o UnableToInsertException.o
-	g++ -Wall -o translate Translator.o WordPair.o Dictionary.o BST.o BSTNode.o ElementAlreadyExistsException.o ElementDoesNotExistException.o EmptyDataCollectionException.o UnableToInsertException.o
+# All .cpp files (Translator.cpp is in root, the rest in src/)
+SOURCES := Translator.cpp \
+           $(SRCDIR)/WordPair.cpp \
+           $(SRCDIR)/Dictionary.cpp \
+           $(SRCDIR)/BST.cpp \
+           $(SRCDIR)/BSTNode.cpp \
+           $(SRCDIR)/exceptions/ElementAlreadyExistsException.cpp \
+           $(SRCDIR)/exceptions/ElementDoesNotExistException.cpp \
+           $(SRCDIR)/exceptions/EmptyDataCollectionException.cpp \
+           $(SRCDIR)/exceptions/UnableToInsertException.cpp
 
-Translator.o: Translator.cpp
-	g++ -Wall -c Translator.cpp 
+# Map sources -> build/*.o (keeps subfolders inside build/)
+OBJECTS := $(patsubst %.cpp,$(BUILDDIR)/%.o,$(SOURCES))
 
-Dictionary.o: Dictionary.h Dictionary.cpp
-	g++ -Wall -c Dictionary.cpp
-	
-WordPair.o: WordPair.h WordPair.cpp
-	g++ -Wall -c WordPair.cpp
-			
-BST.o: BST.h BST.cpp
-	g++ -Wall -c BST.cpp
-	
-BSTNode.o: BSTNode.h BSTNode.cpp
-	g++ -Wall -c BSTNode.cpp
-	
-ElementDoesNotExistException.o: ElementDoesNotExistException.h ElementDoesNotExistException.cpp
-	g++ -Wall -c ElementDoesNotExistException.cpp
+.PHONY: all clean
 
-ElementAlreadyExistsException.o: ElementAlreadyExistsException.h ElementAlreadyExistsException.cpp
-	g++ -Wall -c ElementAlreadyExistsException.cpp
-		
-EmptyDataCollectionException.o: EmptyDataCollectionException.h EmptyDataCollectionException.cpp
-	g++ -Wall -c EmptyDataCollectionException.cpp
-	
-UnableToInsertException.o: UnableToInsertException.h UnableToInsertException.cpp
-	g++ -Wall -c UnableToInsertException.cpp
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJECTS)
+
+# Ensure build/ exists before compiling anything
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
+
+# Generic rule to compile any .cpp into build/.o, preserving folder structure
+$(BUILDDIR)/%.o: %.cpp | $(BUILDDIR)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f translate *.o
+	rm -rf $(TARGET) $(BUILDDIR)

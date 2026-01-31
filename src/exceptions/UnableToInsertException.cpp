@@ -8,7 +8,7 @@
  *         Copyright (c) 2013 __Pearson Education__. All rights reserved.
  */
 
-#include "UnableToInsertException.h"  
+#include "exceptions/UnableToInsertException.h"  
 
 // Constructor
 UnableToInsertException::UnableToInsertException(const string& message): 

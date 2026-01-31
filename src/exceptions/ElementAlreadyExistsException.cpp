@@ -9,7 +9,7 @@
  *         Copyright (c) 2013 __Pearson Education__. All rights reserved.
  */
  
-#include "ElementAlreadyExistsException.h"  
+#include "exceptions/ElementAlreadyExistsException.h"  
 
 // Constructor
 ElementAlreadyExistsException::ElementAlreadyExistsException(const string& message): 

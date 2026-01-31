@@ -7,7 +7,7 @@
  *         Copyright (c) 2013 __Pearson Education__. All rights reserved.
  */
  
-#include "EmptyDataCollectionException.h"  
+#include "exceptions/EmptyDataCollectionException.h"  
 
 // Constructor
 EmptyDataCollectionException::EmptyDataCollectionException(const string& message): 
