@@ -1,4 +1,4 @@
-```md
+
 # Translator Application (C++)
 
 ## Overview
@@ -21,7 +21,7 @@ The application supports:
 ---
 
 ## Project Structure
-.
+```md
 ├── Translator.cpp
 ├── Makefile
 ├── build/                  # Auto-generated object files
